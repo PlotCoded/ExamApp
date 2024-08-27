@@ -1,0 +1,173 @@
+{
+    "Mathematics": [
+        {
+            "details": {
+                "name": "Mathematics",
+                "time": "01:00:00",
+                "marks": "100"
+            }
+        },
+        {
+            "option_type": {
+                "Question 1": "Options",
+                "Question 2": "Options",
+                "Question 3": "Options",
+                "Question 4": "Without Options"
+            }
+        },
+        {
+            "questions": {
+                "Question 1": "What is pi",
+                "Question 2": "What is the perimeter?",
+                "Question 3": "What is 2 + 2",
+                "Question 4": "How are you?"
+            }
+        },
+        {
+            "options": {
+                "Question 1": [
+                    "2",
+                    "3.14",
+                    "7",
+                    "22"
+                ],
+                "Question 2": [
+                    "Length of the shape",
+                    "Space of te shape",
+                    "Volume of the shape",
+                    "No of sides"
+                ],
+                "Question 3": [
+                    "4",
+                    "3",
+                    "2",
+                    "1"
+                ]
+            }
+        },
+        {
+            "answers": {
+                "Question 1": "3.14",
+                "Question 2": "Length of the shape",
+                "Question 3": "4",
+                "Question 4": "Fine"
+            }
+        }
+    ],
+    "BibleQuiz": [
+        {
+            "details": {
+                "name": "BibleQuiz",
+                "time": "00:02:30",
+                "marks": "10"
+            }
+        },
+        {
+            "option_type": {
+                "Question 3": "Options",
+                "Question 1": "Options",
+                "Question 2": "Options",
+                "Question 4": "Options",
+                "Question 5": "Options",
+                "Question 6": "Options",
+                "Question 7": "Options",
+                "Question 8": "Options",
+                "Question 9": "Options",
+                "Question 10": "Options"
+            }
+        },
+        {
+            "questions": {
+                "Question 1": "Which book in the bible has this phrase \"But i say, walk by the spirit \n and you will not gratify the desires of the flesh, for the desires of the flesh are against \n the spirit and the desires of the spirit are against the flesh, and these are opposed to each other, \n to keep you from doing the thing you want to do, \n but if you are led by the spirit you are not under the law\"",
+                "Question 2": "What mountain did the ark of noah rest on?",
+                "Question 3": "How said this phrase \"But if you don't do what is right, sin is crouching at the door, eager to control you but you must subdue it\"",
+                "Question 4": "How many books did Paul write?",
+                "Question 5": "Who gave birth to the Enoch(the one who never died)?",
+                "Question 6": "Who wrote the book of Job?",
+                "Question 7": "Which river is not in the group? \nPishon, Nile, Gihon, Ephrates",
+                "Question 8": "How did Rachel die?",
+                "Question 9": "What did the first sentence you will read in the bible?",
+                "Question 10": "How did Rebecca die?"
+            }
+        },
+        {
+            "options": {
+                "Question 1": [
+                    "Philipians",
+                    "Galatians",
+                    "Corintians",
+                    "Romans"
+                ],
+                "Question 2": [
+                    "Bethsel",
+                    "Ararat",
+                    "Sinai",
+                    "Everest"
+                    
+                ],
+                "Question 3": [
+                    "Elijah",
+                    "Paul",
+                    "Jesus",
+                    "God"
+                ],
+                "Question 4": [
+                    "14",
+                    "13",
+                    "12",
+                    "18"
+                ],
+                "Question 5": [
+                    "Lamach",
+                    "Jared",
+                    "Methuselah",
+                    "Japhet"
+                ],
+                "Question 6": [
+                    "David",
+                    "Moses",
+                    "Job",
+                    "Isaiah"
+                ],
+                "Question 7": [
+                    "Nile",
+                    "Pishon",
+                    "Gihon",
+                    "Euphrates"
+                ],
+                "Question 8": [
+                    "Natural death",
+                    "Turned to salt",
+                    "Stoned to death",
+                    "Child birth"
+                ],
+                "Question 9": [
+                    "In the beginning, God created the heavens and the earth",
+                    "Genesis Chapter 1",
+                    "The Bible",
+                    "And God said"
+                ],
+                "Question 10": [
+                    "Child birth",
+                    "Natural death",
+                    "Stoned to death",
+                    "Stabbed"
+                ]
+            }
+        },
+        {
+            "answers": {
+                "Question 1": "Galatians",
+                "Question 2": "Ararat",
+                "Question 3": "God",
+                "Question 4": "14",
+                "Question 5": "Lamach",
+                "Question 6": "Moses",
+                "Question 7": "Nile",
+                "Question 8": "Child birth",
+                "Question 9": "Genesis Chapter 1",
+                "Question 10": "Natural death"
+            }
+        }
+    ]
+}
