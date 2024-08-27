@@ -1,16 +1,5 @@
 <!DOCTYPE html>
 <html>
-<style>
-  .errors {
-    color: red;
-    }
-  .bad-features {
-    color: gray;
-    }
-  .fix {
-    color: green;
-    }
-</style>
 <body>
 
 <h1>QuizAPP</h1>
