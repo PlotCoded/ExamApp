@@ -27,3 +27,7 @@
 <h2>Sorry to say there is actually no real documantation</h2>
 </body>
 </html>
+
+# Copyright (c) 2024 Your Name
+# Licensed under the MIT License. See LICENSE file in the project root for full license information.
+
