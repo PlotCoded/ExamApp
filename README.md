@@ -2,9 +2,9 @@
 <html>
 <body>
 
-<h1>QuizAPP</h1>
-<h2>Documentation for my QuizApp</h2>
-<p>Well firstly, i would like to say that the app is not fully complete, yes it works but it is not clean, has some bugs and has features that are not perfect. More insight on these below: </p>
+<h1>ExamApp</h1>
+<h2>Documentation for my ExamApp</h2>
+<p>This is an app that will make an exam or text. Just input questions, save them and use them as text or exam later in the future. Well, i would like to say that the app is not fully complete, yes it works but it is not clean, has some bugs and has features that are not perfect. More insight on these below: </p>
 
 <h2>Errors/Issues in the App: </h2>
 <p class="errors">- The storaging process is not fully right as sometimes the options and/or answers switch themselves in  weird ways.</p>
