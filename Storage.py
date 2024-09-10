@@ -1,5 +1,13 @@
 import json
 
+<<<<<<< HEAD
+=======
+with open("Storage.json","r") as file:
+	content = file.read()
+
+	content = json.loads(content)
+
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 def subject_list():
 	with open("Storage.json","r") as file:
 		content = file.read()
@@ -40,6 +48,12 @@ def get_questions(subject, action):
 	else:
 		raise Exception("Actions can only be 'questions' or 'length'")
 
+<<<<<<< HEAD
+=======
+def get_question_keys(subject):
+	return list(content[subject][2]["questions"].keys())
+
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 def get_option_type(subject):
 	with open("Storage.json","r") as file:
 		content = file.read()

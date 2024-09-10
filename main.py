@@ -38,12 +38,15 @@ class Page(ctk.CTk):
 class QuestionFrame: 
     def __init__(self,app):
         self.app = app #The main window or the class "Page"
-        self.review_has_been_made = False #This variable is true if the review page has been created before. 
-        #The use of this variable is to clear the question page when the user wants to take another quiz only is the variable is True.
         self.times_up = False #Helps to change the timer widget once the time is up
         self.doing_the_test = True #Made to stop the timer. This variable tells if the user is still on the test. 
         #If not, eg,pressing "Quit" or "Submit", the timer will stop as the variable becomes False.
         self.subject_choosen = None
+<<<<<<< HEAD
+=======
+        self.review_has_been_made = False #This variable is true if the review page has been created before. 
+        #The use of this variable is to clear the question page when the user wants to take another quiz only is the variable is True.
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
     def welcome(self):
         #This frame contains the welcome instruction to choose a topic from the Menu Button
@@ -56,6 +59,7 @@ class QuestionFrame:
 
     #Changing the content of the question frame in other to get ready to start the quiz
     def about_to_start(self):
+
         #Clearing the previous page
         self.instruction_label.pack_forget()
 
@@ -455,13 +459,14 @@ class QuestionFrame:
 #This is the vertical frame placed at the left side of the app
 class MenuFrame: 
     def __init__(self, app):
-            self.app = app
+        self.app = app
 
-            self.Menu_frame()
-            self.scroll_frame()
-            self.topic_label()
-            self.editor_frame()
+        self.Menu_frame()
+        self.scroll_frame()
+        self.topic_label()
+        self.editor_frame()
 
+<<<<<<< HEAD
             #This attributes are to be used later on in the program
             self.add_question_choice = None #This is the question answering type format such as options and non-options
             self.right_answer_picked = False #Checks if an answer has been picked for only option questions
@@ -474,6 +479,24 @@ class MenuFrame:
             self.storage_option_type = {}
             self.storage_options = {}
             self.storage_answers = {}
+=======
+        #This attributes are to be used later on in the program
+        self.add_question_choice = None #This is the question answering type format such as options and non-options
+        self.right_answer_picked = False #Checks if an answer has been picked for only option questions
+        #This variable tells if the instruction page has been displayed or not
+        self.about_to_start_present = False
+        
+        #Storage variables
+        self.storage_details = {}
+        self.storage_questions = {}
+        self.storage_option_type = {}
+        self.storage_options = {}
+        self.storage_answers = {}
+
+        #Initializing the QuestionFrame: This would display the "question_frame"
+        self.Question_frame = QuestionFrame(self.app)
+        self.Question_frame.welcome()
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
     def Menu_frame(self):
         #Menu Frame: Contains Scrollable frame
@@ -1008,7 +1031,11 @@ class MenuFrame:
 
         def edit_question_info_continue_func():
             def finished_func():
+<<<<<<< HEAD
                 if self.question_choice == "none":
+=======
+                if self.add_question_choice == "none":
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
                     self.question_option_filled([self.forget_question_page, self.edit_question_page])
                     
                     Storage.change_question(self.subject, self.storage_questions)
@@ -1017,12 +1044,20 @@ class MenuFrame:
                         Storage.change_option(self.subject, self.storage_options)
                     Storage.change_answer(self.subject,self.storage_answers)
                 
+<<<<<<< HEAD
                 elif self.question_choice == "before":
+=======
+                elif self.add_question_choice == "before":
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
                     self.question_option_filled([self.forget_question_page, self.edit_question_page])
                     print(self.question_number-1, self.storage_questions,self.storage_answers, self.storage_option_type)
                     Storage.add_before(self.subject, self.question_number-1, question=self.storage_questions, option_type=self.storage_option_type, option=self.storage_options, answer=self.storage_answers)
                 
+<<<<<<< HEAD
                 elif self.question_choice == "after":
+=======
+                elif self.add_question_choice == "after":
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
                     self.question_option_filled([self.forget_question_page, self.edit_question_page])
                     print(self.question_number-2, self.storage_questions,self.storage_answers, self.storage_option_type)
                     Storage.add_after(self.subject, self.question_number-2, question=self.storage_questions, option_type=self.storage_option_type, option=self.storage_options, answer=self.storage_answers)
@@ -1065,7 +1100,11 @@ class MenuFrame:
         
         def edit_question_info_cancel_func():
             self.forget_question_info()
+<<<<<<< HEAD
             self.question_radio_buttons()
+=======
+            self.treeview()
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
         def edit_question_page():
             self.forget_title_or_question()
@@ -1083,7 +1122,14 @@ class MenuFrame:
             def radio_func(ques):
                 print(ques)
 
+<<<<<<< HEAD
                 self.question_number = ques.split(" ")[1]
+=======
+            #Inserting question and its choice
+            for _ in range(0,Storage.get_questions(self.subject, "length")):
+                __ = _ + 1
+                self.table.insert(parent="", index=_, values=(__, Storage.get_option_type(self.subject)[_- 1]))
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
                 if self.question_choice == "before":
                     self.edit_question_info()    
@@ -1092,6 +1138,7 @@ class MenuFrame:
                     self.question_number+=1
                     self.edit_question_info()
 
+<<<<<<< HEAD
                 elif self.question_choice == "none":
                     self.edit_question_info()
 
@@ -1105,6 +1152,10 @@ class MenuFrame:
             for _ in question_radiobuttons_packed:
                 exec(_)
 
+=======
+            #Implementing a functionality when a question is double clicked
+            self.table.bind("<Double -1>", self.table_clicked)
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
             #Adding a tip label
             self.radio_label = ctk.CTkLabel(self.editor_window, text="Double click on a question to change it")
             self.radio_label.pack()
@@ -1132,6 +1183,7 @@ class MenuFrame:
         def question_checkboxes():
             self.forget_title_or_question()
 
+<<<<<<< HEAD
             self.checkbox_scroll = ctk.CTkCheckBox(self.editor_window)
             self.checkbox_scroll.pack(expand=True, both="both")
 
@@ -1164,13 +1216,27 @@ class MenuFrame:
                 for _ in range(len(self.checkbox_names))
                 ] 
             question_checkboxes_packed = [f"{self.checkbox_names[_]}.pack(fill='both', pady=20)" for _ in range(len(self.checkbox_names))]
+=======
+            #Changing the functionality of the treeview binding
+            self.table.bind("<Double -1>", delete_question_page_func)
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
             
             #Executing each functions in the lists to make and display each subject buttons
             for _ in question_checkboxes:
                 exec(_)
 
+<<<<<<< HEAD
             for _ in question_checkboxes_packed:
                 exec(_)
+=======
+            Storage.delete_question(self.subject, self.question_number)
+
+            #Ensuring the message box sits above the window
+            self.editor_window.attributes("-topmost", False)
+            
+            #Asking the user if they actually want to delete the question
+            tk.messagebox.askokcancel(title="Delete Question", message=f"Do you wish to delete question {self.question_number}")
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
             #Adding a tip label
             self.checkbox_label = ctk.CTkLabel(self.editor_window, text="Double click on a question to delete it")
@@ -1322,8 +1388,11 @@ class MenuFrame:
         self.valid_time = valid_time
         self.valid_marks = valid_marks
         self.record = record
+<<<<<<< HEAD
         self.question_checkboxes = question_checkboxes
         self.question_radio_buttons = question_radio_buttons
+=======
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
         #This function is ran when any of the editor buttons are clicked such as search, edit, etc
         def editor_clicked_func(button):
@@ -1536,6 +1605,7 @@ class MenuFrame:
             self.add_button.pack(expand=True,fill="x",side="left")
             self.edit_button.pack(expand=True,fill="x",side="left")
             self.delete_button.pack(expand=True,fill="x",side="left")
+<<<<<<< HEAD
 
             #This function makes the About to Start page appear and the Welcome page to disappear
             global about_to_start_appear
@@ -1554,18 +1624,44 @@ class MenuFrame:
                     self.Question_frame.new_instruction_label.pack_forget()
                     self.Question_frame.arrow_label.pack_forget()
                     self.Question_frame.starting_button.pack_forget()
+=======
+
+        #This function makes the About to Start page appear and the Welcome page to disappear
+        global about_to_start_appear
+        def about_to_start_appear(sub):
+            #Storing which subjects button has been pressed
+            self.subject_choosen = sub
+
+            self.app.tophorizontalframe.subject_variable.set(self.subject_choosen)
+            self.Question_frame.subject_choosen = self.subject_choosen
+
+            if self.about_to_start_present == False:
+                self.Question_frame.about_to_start()
+                self.about_to_start_present = True
+            elif self.about_to_start_present == True:
+                #Removing the question frame (about to start page)
+                self.Question_frame.new_instruction_label.pack_forget()
+                self.Question_frame.arrow_label.pack_forget()
+                self.Question_frame.starting_button.pack_forget()
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
                     #Bringing the question frame (about to start page)
                     self.Question_frame.about_to_start()
 
+<<<<<<< HEAD
                     #Doing this does absolutly nothing other than update what subject is to be run
                     #And letting the user see that the subject they clicked loaded
+=======
+                #Doing this does absolutly nothing other than update what subject is to be run
+                #And letting the user see that the subject they clicked loaded
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
         
         self.display_editor = display_editor
         self.display_editor()
 
         def display_subjects():
             self.subjects_list = Storage.subject_list()
+<<<<<<< HEAD
 
             self.subject_list_widget = [
                 f"{self.subjects_list[_]} = ctk.CTkButton(self.scroll_frame, text=f'{self.subjects_list[_]}',fg_color='#d3d3de',width=200,height=50,corner_radius=10,border_width=2,hover_color='#b3b3be',command=lambda:about_to_start_appear('{self.subjects_list[_]}'))" 
@@ -1588,6 +1684,26 @@ class MenuFrame:
         #Initializing the QuestionFrame: This would display the "question_frame"
         self.Question_frame = QuestionFrame(self.app)
         self.Question_frame.welcome()
+=======
+
+            self.subject_list_widget = [
+                f"{self.subjects_list[_]} = ctk.CTkButton(self.scroll_frame, text=f'{self.subjects_list[_]}',fg_color='#d3d3de',width=200,height=50,corner_radius=10,border_width=2,hover_color='#b3b3be',command=lambda:about_to_start_appear('{self.subjects_list[_]}'))" 
+                for _ in range(len(self.subjects_list))
+                ]
+            self.subject_widget_packed = [f"{self.subjects_list[_]}.pack(expand=True,fill='x',padx=10,pady=10)" for _ in range(len(self.subjects_list))]
+            #self.disable_subjects = [f"{self.subjects_list[_]}.configure(state='disabled')" for _ in range(len(self.subjects_list))]
+            #self.subject_pack_forget = [f"{self.subjects_list[_]}.pack_forget()" for _ in range(len(self.subjects_list))]
+            #elf.global_subject = [f"global {self.subjects_list[_]}" for _ in range(len(self.subjects_list))]
+            #Executing each statement
+            for _ in self.subject_list_widget:
+                exec(_)
+
+            for _ in self.subject_widget_packed:
+                exec(_)
+
+        self.display_subjects = display_subjects
+        self.display_subjects()
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
 #Note: This class has to be created last because it has to inherit the class MenuFrame and QuestionFrame
 #If it wasn't done last, trying the inherit the MenuFrame and Question Frame classes will return-
