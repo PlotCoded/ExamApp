@@ -42,8 +42,11 @@ class QuestionFrame:
         self.doing_the_test = True #Made to stop the timer. This variable tells if the user is still on the test. 
         #If not, eg,pressing "Quit" or "Submit", the timer will stop as the variable becomes False.
         self.subject_choosen = None
+<<<<<<< HEAD
+=======
         self.review_has_been_made = False #This variable is true if the review page has been created before. 
         #The use of this variable is to clear the question page when the user wants to take another quiz only is the variable is True.
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
     def welcome(self):
         #This frame contains the welcome instruction to choose a topic from the Menu Button
@@ -463,6 +466,20 @@ class MenuFrame:
         self.topic_label()
         self.editor_frame()
 
+<<<<<<< HEAD
+            #This attributes are to be used later on in the program
+            self.add_question_choice = None #This is the question answering type format such as options and non-options
+            self.right_answer_picked = False #Checks if an answer has been picked for only option questions
+            #This variable tells if the instruction page has been displayed or not
+            self.about_to_start_present = False
+
+            #Storage variables
+            self.storage_details = {}
+            self.storage_questions = {}
+            self.storage_option_type = {}
+            self.storage_options = {}
+            self.storage_answers = {}
+=======
         #This attributes are to be used later on in the program
         self.add_question_choice = None #This is the question answering type format such as options and non-options
         self.right_answer_picked = False #Checks if an answer has been picked for only option questions
@@ -479,6 +496,7 @@ class MenuFrame:
         #Initializing the QuestionFrame: This would display the "question_frame"
         self.Question_frame = QuestionFrame(self.app)
         self.Question_frame.welcome()
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
     def Menu_frame(self):
         #Menu Frame: Contains Scrollable frame
@@ -848,7 +866,7 @@ class MenuFrame:
             self.add_question_after_button.pack(expand=True, side="top")
 
             #This button will give a page to delete the selected question
-            self.delete_question_button = ctk.CTkButton(self.title_or_question_frame, text="Delete Question", command=self.delete_question_page, width=400, anchor="justify")
+            self.delete_question_button = ctk.CTkButton(self.title_or_question_frame, text="Delete Question", command=self.question_checkboxes, width=400, anchor="justify")
             self.delete_question_button.pack(expand=True, side="top")
 
             #Cancel Button
@@ -1013,7 +1031,11 @@ class MenuFrame:
 
         def edit_question_info_continue_func():
             def finished_func():
+<<<<<<< HEAD
+                if self.question_choice == "none":
+=======
                 if self.add_question_choice == "none":
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
                     self.question_option_filled([self.forget_question_page, self.edit_question_page])
                     
                     Storage.change_question(self.subject, self.storage_questions)
@@ -1022,12 +1044,20 @@ class MenuFrame:
                         Storage.change_option(self.subject, self.storage_options)
                     Storage.change_answer(self.subject,self.storage_answers)
                 
+<<<<<<< HEAD
+                elif self.question_choice == "before":
+=======
                 elif self.add_question_choice == "before":
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
                     self.question_option_filled([self.forget_question_page, self.edit_question_page])
                     print(self.question_number-1, self.storage_questions,self.storage_answers, self.storage_option_type)
                     Storage.add_before(self.subject, self.question_number-1, question=self.storage_questions, option_type=self.storage_option_type, option=self.storage_options, answer=self.storage_answers)
                 
+<<<<<<< HEAD
+                elif self.question_choice == "after":
+=======
                 elif self.add_question_choice == "after":
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
                     self.question_option_filled([self.forget_question_page, self.edit_question_page])
                     print(self.question_number-2, self.storage_questions,self.storage_answers, self.storage_option_type)
                     Storage.add_after(self.subject, self.question_number-2, question=self.storage_questions, option_type=self.storage_option_type, option=self.storage_options, answer=self.storage_answers)
@@ -1070,96 +1100,135 @@ class MenuFrame:
         
         def edit_question_info_cancel_func():
             self.forget_question_info()
+<<<<<<< HEAD
+            self.question_radio_buttons()
+=======
             self.treeview()
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
         def edit_question_page():
             self.forget_title_or_question()
-            self.treeview()
+            self.question_radio_buttons()
         
-        def treeview():
-            #Creating a treeview
-            self.table = ttk.Treeview(self.editor_window, column=("Question No","Choice"), show="headings")
-            self.table.pack(expand=True, fill="both")
+        def question_radio_buttons():
+            self.radio_scroll = ctk.CTkRadioButton(self.editor_window)
+            self.radio_scroll.pack(expand=True, fill="both")
 
-            #Centering the text
-            self.table.column("Question No",anchor="center")
-            self.table.column("Choice",anchor="center")
+            #Displaying the subjects in the scroll frame
+            self.radio_names = Storage.get_question_keys(self.subject)
 
-            #Changing the font and colour
-            style = ttk.Style()
-            style.configure("Treeview", background="#c3c3c3")
-            style.configure("Treeview.Heading", font=("Cosmic Sans MS", 14))
-            style.configure("Treeview", font=("Cosmic Sans MS", 14))
+            self.radio_var = tk.StringVar()
 
-            #Giving th treeview a heading
-            self.table.heading("Question No",text="Question No")
-            self.table.heading("Choice",text="Choice")
+            def radio_func(ques):
+                print(ques)
 
+<<<<<<< HEAD
+                self.question_number = ques.split(" ")[1]
+=======
             #Inserting question and its choice
             for _ in range(0,Storage.get_questions(self.subject, "length")):
                 __ = _ + 1
                 self.table.insert(parent="", index=_, values=(__, Storage.get_option_type(self.subject)[_- 1]))
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
-            #Treeview scrollbar
-            self.scrollbar = ttk.Scrollbar(self.editor_window, orient="vertical", command=self.table.yview)
-            self.table.configure(yscrollcommand=self.scrollbar.set)
-            self.scrollbar.place(relx=1,rely=0, relheight=1,anchor="ne")
+                if self.question_choice == "before":
+                    self.edit_question_info()    
+            
+                elif self.question_choice == "after":
+                    self.question_number+=1
+                    self.edit_question_info()
 
+<<<<<<< HEAD
+                elif self.question_choice == "none":
+                    self.edit_question_info()
+
+            question_radiobuttons = [f"{'_'.join(self.radio_names[_].split(' '))} = ctk.CTkRadioButton(self.radio_scroll, text='{self.radio_names[_]}', variable=self.radio_var, value=_, command=lambda: radio_func('{self.radio_names[_]}'))" for _ in range(len(self.radio_names))] 
+            question_radiobuttons_packed = [f"{'_'.join(self.radio_names[_].split(' '))}.place(x=100, y=200)" for _ in range(len(self.radio_names))]
+            
+            #Executing each functions in the lists to make and display each subject buttons
+            for _ in question_radiobuttons:
+                exec(_)
+
+            for _ in question_radiobuttons_packed:
+                exec(_)
+
+=======
             #Implementing a functionality when a question is double clicked
             self.table.bind("<Double -1>", self.table_clicked)
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
             #Adding a tip label
-            self.treeview_label = ctk.CTkLabel(self.editor_window, text="Double click on a question to change it")
-            self.treeview_label.pack()
+            self.radio_label = ctk.CTkLabel(self.editor_window, text="Double click on a question to change it")
+            self.radio_label.pack()
 
             #cancel
-            self.treeview_cancel_button = ctk.CTkButton(self.editor_window, text="Cancel", border_width=0, command=self.treeview_cancel_func)
-            self.treeview_cancel_button.pack()
-        
-        def table_clicked(event):
-            #Getting the question no that was clicked
-            self.question_number = self.table.item(self.table.selection()[0])["values"][0]
-            
-            if self.add_question_choice == "before":
-                self.edit_question_info()    
-            
-            elif self.add_question_choice == "after":
-                self.question_number+=1
-                self.edit_question_info()
+            self.radio_cancel_button = ctk.CTkButton(self.editor_window, text="Cancel", border_width=0, command=self.radio_cancel_func)
+            self.radio_cancel_button.pack()
 
-            elif self.add_question_choice == "none":
-                #Getting the question no that was clicked
-                self.question_number = self.table.item(self.table.selection()[0])["values"][0]
-
-                self.edit_question_info()
-            
-        def treeview_cancel_func():
-            self.forget_treeview()
+        def radio_cancel_func():
+            self.forget_radio()
             self.title_or_question()
         
-        def forget_treeview():
-            self.table.pack_forget()
-            self.treeview_label.pack_forget()
-            self.treeview_cancel_button.pack_forget()
-            self.scrollbar.place_forget()
+        def forget_radio():
+            self.radio_scroll.pack_forget()
+            self.radio_label.pack_forget()
+            self.radio_cancel_button.pack_forget()
 
         def add_question(choice):
             self.forget_title_or_question()
-            self.treeview()
+            self.question_radio_buttons()
 
             #This variable tells whether the user picked before, after or the question itself
-            self.add_question_choice = choice
-    
-        def delete_question_page():
-            self.forget_title_or_question()
-            self.treeview()
+            self.question_choice = choice
 
+        def question_checkboxes():
+            self.forget_title_or_question()
+
+<<<<<<< HEAD
+            self.checkbox_scroll = ctk.CTkCheckBox(self.editor_window)
+            self.checkbox_scroll.pack(expand=True, both="both")
+
+            #Displaying the subjects in the scroll frame
+            self.checkbox_names = Storage.get_question_keys(self.subject)
+
+            self.checkbox_var = tk.StringVar(value=1)
+
+            def checkbox_func(ques):
+                print(ques)
+
+                self.question_number = ques.split(" ")[1]
+
+                #Getting the question no that was clicked
+                self.question_number = ques.split(" ")[1]
+
+                Storage.delete_question(self.subject, self.question_number)
+
+                #Ensuring the message box sits above the window
+                self.editor_window.attributes("-topmost", False)
+                
+                #Asking the user if they actually want to delete the question
+                tk.messagebox.askokcancel(title="Delete Question", message=f"Do you wish to delete question {self.question_number}")
+
+                #Ensuring the message box sits above the window once again
+                self.editor_window.attributes("-topmost", True)
+
+            question_checkboxes = [
+                f"{self.checkbox_names[_]} = ctk.CTkCheckBox(self.checkbox_scroll, text=f'{self.checkbox_names[_]}',variable=self.checkbox_var, onvalue=1, offvalue=0, command=lambda: checkbox_func(f'{self.checkbox_names[_]}'))" 
+                for _ in range(len(self.checkbox_names))
+                ] 
+            question_checkboxes_packed = [f"{self.checkbox_names[_]}.pack(fill='both', pady=20)" for _ in range(len(self.checkbox_names))]
+=======
             #Changing the functionality of the treeview binding
             self.table.bind("<Double -1>", delete_question_page_func)
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
             
-        def delete_question_page_func(event):
-            #Getting the question no that was clicked
-            self.question_number = self.table.item(self.table.selection()[0])["values"][0]
+            #Executing each functions in the lists to make and display each subject buttons
+            for _ in question_checkboxes:
+                exec(_)
 
+<<<<<<< HEAD
+            for _ in question_checkboxes_packed:
+                exec(_)
+=======
             Storage.delete_question(self.subject, self.question_number)
 
             #Ensuring the message box sits above the window
@@ -1167,9 +1236,15 @@ class MenuFrame:
             
             #Asking the user if they actually want to delete the question
             tk.messagebox.askokcancel(title="Delete Question", message=f"Do you wish to delete question {self.question_number}")
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
-            #Ensuring the message box sits above the window once again
-            self.editor_window.attributes("-topmost", True)
+            #Adding a tip label
+            self.checkbox_label = ctk.CTkLabel(self.editor_window, text="Double click on a question to delete it")
+            self.checkbox_label.pack()
+
+            #cancel
+            self.checkbox_cancel_button = ctk.CTkButton(self.editor_window, text="Cancel", border_width=0, command=self.checkbox_cancel_func)
+            self.checkbox_cancel_button.pack()
         
         def question_option_filled(func):
             #Determning if the question widget is filled with a question
@@ -1305,19 +1380,19 @@ class MenuFrame:
         self.forget_subject_details_page = forget_subject_details_page
         self.edit_question_page = edit_question_page
         self.edit_question_info = edit_question_info
-        self.forget_treeview = forget_treeview
-        self.treeview = treeview
-        self.table_clicked = table_clicked
         self.edit_question_info_continue_func = edit_question_info_continue_func
         self.edit_question_info_cancel_func = edit_question_info_cancel_func
-        self.treeview_cancel_func = treeview_cancel_func
         self.add_question = add_question
-        self.delete_question_page = delete_question_page
         self.question_option_filled = question_option_filled
         self.valid_subject = valid_subject
         self.valid_time = valid_time
         self.valid_marks = valid_marks
         self.record = record
+<<<<<<< HEAD
+        self.question_checkboxes = question_checkboxes
+        self.question_radio_buttons = question_radio_buttons
+=======
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
         #This function is ran when any of the editor buttons are clicked such as search, edit, etc
         def editor_clicked_func(button):
@@ -1530,6 +1605,26 @@ class MenuFrame:
             self.add_button.pack(expand=True,fill="x",side="left")
             self.edit_button.pack(expand=True,fill="x",side="left")
             self.delete_button.pack(expand=True,fill="x",side="left")
+<<<<<<< HEAD
+
+            #This function makes the About to Start page appear and the Welcome page to disappear
+            global about_to_start_appear
+            def about_to_start_appear(sub):
+                #Storing which subjects button has been pressed
+                self.subject_choosen = sub
+
+                self.app.tophorizontalframe.subject_variable.set(self.subject_choosen)
+                self.Question_frame.subject_choosen = self.subject_choosen
+
+                if self.about_to_start_present == False:
+                    self.Question_frame.about_to_start()
+                    self.about_to_start_present = True
+                elif self.about_to_start_present == True:
+                    #Removing the question frame (about to start page)
+                    self.Question_frame.new_instruction_label.pack_forget()
+                    self.Question_frame.arrow_label.pack_forget()
+                    self.Question_frame.starting_button.pack_forget()
+=======
 
         #This function makes the About to Start page appear and the Welcome page to disappear
         global about_to_start_appear
@@ -1548,18 +1643,25 @@ class MenuFrame:
                 self.Question_frame.new_instruction_label.pack_forget()
                 self.Question_frame.arrow_label.pack_forget()
                 self.Question_frame.starting_button.pack_forget()
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
-                #Bringing the question frame (about to start page)
-                self.Question_frame.about_to_start()
+                    #Bringing the question frame (about to start page)
+                    self.Question_frame.about_to_start()
 
+<<<<<<< HEAD
+                    #Doing this does absolutly nothing other than update what subject is to be run
+                    #And letting the user see that the subject they clicked loaded
+=======
                 #Doing this does absolutly nothing other than update what subject is to be run
                 #And letting the user see that the subject they clicked loaded
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
         
         self.display_editor = display_editor
         self.display_editor()
 
         def display_subjects():
             self.subjects_list = Storage.subject_list()
+<<<<<<< HEAD
 
             self.subject_list_widget = [
                 f"{self.subjects_list[_]} = ctk.CTkButton(self.scroll_frame, text=f'{self.subjects_list[_]}',fg_color='#d3d3de',width=200,height=50,corner_radius=10,border_width=2,hover_color='#b3b3be',command=lambda:about_to_start_appear('{self.subjects_list[_]}'))" 
@@ -1578,6 +1680,30 @@ class MenuFrame:
 
         self.display_subjects = display_subjects
         self.display_subjects()
+
+        #Initializing the QuestionFrame: This would display the "question_frame"
+        self.Question_frame = QuestionFrame(self.app)
+        self.Question_frame.welcome()
+=======
+
+            self.subject_list_widget = [
+                f"{self.subjects_list[_]} = ctk.CTkButton(self.scroll_frame, text=f'{self.subjects_list[_]}',fg_color='#d3d3de',width=200,height=50,corner_radius=10,border_width=2,hover_color='#b3b3be',command=lambda:about_to_start_appear('{self.subjects_list[_]}'))" 
+                for _ in range(len(self.subjects_list))
+                ]
+            self.subject_widget_packed = [f"{self.subjects_list[_]}.pack(expand=True,fill='x',padx=10,pady=10)" for _ in range(len(self.subjects_list))]
+            #self.disable_subjects = [f"{self.subjects_list[_]}.configure(state='disabled')" for _ in range(len(self.subjects_list))]
+            #self.subject_pack_forget = [f"{self.subjects_list[_]}.pack_forget()" for _ in range(len(self.subjects_list))]
+            #elf.global_subject = [f"global {self.subjects_list[_]}" for _ in range(len(self.subjects_list))]
+            #Executing each statement
+            for _ in self.subject_list_widget:
+                exec(_)
+
+            for _ in self.subject_widget_packed:
+                exec(_)
+
+        self.display_subjects = display_subjects
+        self.display_subjects()
+>>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
 
 #Note: This class has to be created last because it has to inherit the class MenuFrame and QuestionFrame
 #If it wasn't done last, trying the inherit the MenuFrame and Question Frame classes will return-
