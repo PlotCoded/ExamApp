@@ -1,46 +1,28 @@
 import json
 
-<<<<<<< HEAD
-=======
 with open("Storage.json","r") as file:
 	content = file.read()
-
 	content = json.loads(content)
 
->>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
-def subject_list():
-	with open("Storage.json","r") as file:
-		content = file.read()
+def write(content):
+	#Rewriting/Storing any changes made(to the "content" dictionary) into the JSON file
+	with open("Storage.json","w") as file:
+		content = json.dumps(content, indent=4)
+		file.write(content)
 
-	content = json.loads(content)
+def getSubjectList():
 	return list(content.keys())
 
-def last_question(subject):
-	with open("Storage.json","r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def getNumberOfQuestions(subject):
 	return list(content[subject][2]["questions"].keys())[-1].split(" ")[1]
 
-def get_time(subject):
-	with open("Storage.json","r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def getTime(subject):
 	return content[subject][0]["details"]["time"]
 
-def get_marks(subject):
-	with open("Storage.json","r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def getMarks(subject):
 	return content[subject][0]["details"]["marks"]
 
-def get_questions(subject, action):
-	with open("Storage.json","r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def getQuestions(subject, action="questions"):
 	if action == "questions":
 		return list(content[subject][2]["questions"].values())
 	elif action == "length":
@@ -48,176 +30,57 @@ def get_questions(subject, action):
 	else:
 		raise Exception("Actions can only be 'questions' or 'length'")
 
-<<<<<<< HEAD
-=======
-def get_question_keys(subject):
+def getQuestionKeys(subject):
 	return list(content[subject][2]["questions"].keys())
 
->>>>>>> 13483fca6ec6bf8c173c66f5cb2efe5300135b50
-def get_option_type(subject):
-	with open("Storage.json","r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def getOptionType(subject):
 	return list(content[subject][1]["option_type"].values())
 
-def get_options(subject):
-	with open("Storage.json","r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def getOptions(subject):
 	return list(content[subject][3]["options"].values())
 
-def get_answers(subject):
-	with open("Storage.json","r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def getAnswers(subject):
 	return list(content[subject][4]["answers"].values())
 
-def add_subject(subject, details={}, option_type={}, questions={}, options={}, answers={}):
-	with open("Storage.json","r") as file:
-		content = file.read()
+def addSubject(subject, details={}, option_type={}, questions={}, options={}, answers={}, 
+	content=content):
+	content.update({subject: [{"details":details}, {"option_type":option_type},
+		{"questions":questions},{"options":options},{"answers":answers}]})
+	print(content)
 
-	content = json.loads(content)
-	content.update({subject: [{"details":details}, {"option_type":option_type},{"questions":questions},{"options":options},{"answers":answers}]})
+	write(content)
 
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
+	#Note: "addSubject" function can be used to change sub parts, i.e, details, option type,
+	#questions, etc but it is not recommended.
 
-def add_details(subject, details={}):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def addDetails(subject, details={}, content=content):
 	content[subject][0]["details"].update(details)
 
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
+	write(content)
 
-def add_option_type(subject, option_type={}):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def addOptionType(subject, option_type={}, content=content):		
 	content[subject][1]["option_type"].update(option_type)
 
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
+	write(content)
 
-def add_questions(subject, questions):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def addQuestions(subject, questions, content=content):		
 	content[subject][2]["questions"].update(questions)
 
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
+	write(content)
 
-def add_options(subject, options={}):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def addOptions(subject, options={}, content=content):		
 	content[subject][3]["options"].update(options)
 
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
+	write(content)
 
-def add_answers(subject, answers={}):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
+def addAnswers(subject, answers={}, content=content):		
 	content[subject][4]["answers"].update(answers)
 
 	with open("Storage.json","w") as file:
 		content = json.dumps(content, indent=4)
 		file.write(content)
 
-def change_subject_name(subject, new_subject):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
-	val = content[subject]
-	content.update({new_subject:val})
-	content[new_subject][0]["details"]["name"] = new_subject
-
-	del content[subject]
-
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
-
-def change_subject_details(subject, time, marks):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
-	content[subject][0]["details"].update({"time":time})
-	content[subject][0]["details"].update({"marks":marks})
-
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
-
-def change_question(subject, question):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
-	content[subject][2]["questions"][list(question.keys())[0]] = list(question.values())[0];
-
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
-
-def change_option_type(subject, option_type):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
-	content[subject][1]["option_type"][list(option_type.keys())[0]] = list(option_type.values())[0];
-
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
-
-def change_option(subject, option):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
-	content[subject][3]["options"][list(option.keys())[0]] = list(option.values())[0];
-
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
-
-def change_answer(subject, answer):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
-	content[subject][4]["answers"][list(answer.keys())[0]] = list(answer.values())[0];
-
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
-
-def add_before(subject, question_number, option_type={"Question 1":"Options"}, question={}, option={}, answer={}):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
-
+def addBefore(subject, question_number, option_type={"Question 1":"Options"}, question={}, option={}, answer={}, content=content):
 	#Options type
 	keys = list(content[subject][1]["option_type"].keys())
 	options_type = list(content[subject][1]["option_type"].values())
@@ -287,16 +150,9 @@ def add_before(subject, question_number, option_type={"Question 1":"Options"}, q
 		content[subject][4]["answers"].update({f"Question {_}":answers[i]})
 		i+=1
 
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
+	write(content)
 
-def add_after(subject, question_number, option_type, question, option, answer):
-	with open("Storage.json", "r") as file:
-		content = file.read()
-
-	content = json.loads(content)
-
+def addAfter(subject, question_number, option_type, question, option, answer,content=content):
 	#Option type
 	keys = list(content[subject][1]["option_type"].keys())
 	options_type = list(content[subject][1]["option_type"].values())
@@ -366,16 +222,45 @@ def add_after(subject, question_number, option_type, question, option, answer):
 		content[subject][4]["answers"].update({f"Question {_}":answers[i]})
 		i+=1
 	
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
+	write(content)
 
-def delete_question(subject, question_number):
-	with open("Storage.json", "r") as file:
-		content = file.read()
+def changeSubjectName(subject, new_subject, content=content):
+	val = content[subject]
+	content.update({new_subject:val})
+	content[new_subject][0]["details"]["name"] = new_subject
 
-	content = json.loads(content)
+	del content[subject]
 
+	write(content)
+
+def changeSubjectDetails(subject, time, marks, content=content):		
+	content[subject][0]["details"].update({"time":time})
+	content[subject][0]["details"].update({"marks":marks})
+
+	write(content)
+
+def changeQuestion(subject, question, content=content):
+	content[subject][2]["questions"][list(question.keys())[0]] = list(question.values())[0];
+
+	write(content)
+
+def changeOptionType(subject, option_type, content=content):
+	content[subject][1]["option_type"][list(option_type.keys())[0]] = list(option_type.values())[0];
+
+	write(content)
+
+def changeOption(subject, option, content=content):		
+	content[subject][3]["options"][list(option.keys())[0]] = list(option.values())[0];
+
+	write(content)
+
+def changeAnswer(subject, answer, content=content):		
+	content[subject][4]["answers"][list(answer.keys())[0]] = list(answer.values())[0];
+
+	write(content)
+
+#deleteQuestion doesn't quite work
+def deleteQuestion(subject, question_number, content=content):
 	#Option type
 	keys = list(content[subject][1]["option_type"].keys())
 	options_type = list(content[subject][1]["option_type"].values())
@@ -480,8 +365,48 @@ def delete_question(subject, question_number):
 			content[subject][4]["answers"].update({f"Question {_}":answers[i]})
 			i+=1
 
-	with open("Storage.json","w") as file:
-		content = json.dumps(content, indent=4)
-		file.write(content)
+	write(content)
 
-# add_before("Maths", 1, option_type={"Question 1":"sdonosnd"}, question={"Question 1": "aohdoaos"}, option={}, answer={"Question 1":"scscdsd"})
+#Testing
+if __name__ == "__main__":
+	sub = "Maths"
+	addSubject(sub, 
+		details={"name":sub,
+		"marks":100,
+		"time":"00:01:00"},
+		option_type={"Question 1":"Options"}, 
+		questions={"Question 1":"What is pi?"}, 
+		options={"Question 1":[1.15,1,3.1415,3.5]}, 
+		answers={"Question 1":3.1451}
+		)
+	print(getMarks(sub), getTime(sub))
+	addDetails(sub,
+		details={"name":sub,
+		"marks":50,
+		"time":"00:02:30"})
+	print(getMarks(sub), getTime(sub))
+	addOptionType(sub, 
+		option_type={"Question 2":"Options"})
+	print(getOptionType(sub))
+	addQuestions(sub, 
+		questions={"Question 2":"What is the value of b when a = 0 and b = a + 1?"})
+	print(getQuestions(sub))
+	addOptions(sub, 
+		options={"Question 2":[0,1,2,3]})
+	print(getOptions(sub))
+	addAnswers(sub, 
+		answers={"Question 2":1})
+	print(getAnswers(sub))
+	addBefore(sub, 
+		1,
+		option_type={"Question 1":"Options"}, 
+		question={"Question 1":"What is log 2(base 2)?"}, 
+		option={"Question 1":[-1,1,0,2]}, 
+		answer={"Question 1":1}
+		)
+	addAfter(sub,
+		1,
+		option_type={"Question 2":"Options"}, 
+		question={"Question 2":"What is log 2(base 4)?"}, 
+		option={"Question 2":[0,2,1,1.5]}, 
+		answer={"Question 2":2})
